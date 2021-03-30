@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+
+Options -Indexes
+
+RewriteCond %{HTTP_REFERER} !/cart/
+RewriteRule \.* 404.php [L]
