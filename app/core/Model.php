@@ -12,14 +12,17 @@ class Model
     {
         $this->exc_api = new Exc_Rates_Data(ROOT . '/app/data/rates.json', 'https://www.nbrb.by/api/exrates/rates/145');
         $this->goods_api = new Goods_Data(ROOT . '/app/data/goods.json', 'https://fakestoreapi.herokuapp.com/products/category/electronics');
+        $name = $_SESSION['name'] ?? 'Guest';
+        $group = $_SESSION['group'] ?? 'Guest';
+        $this->user = new User($name, $group);
         $this->pageData = [
           "title" => '',
           "orderQuantity" => 0,
           "orderAmount" => 0,
           "exchange_rates" => $this->get_exchange_rates(),
           "goods_data" => $this->get_goods_data(),
-          "user_name" => '',
-          "user_group" => '',
+          "user_name" => $this->user->get()['name'],
+          "user_group" => $this->user->get()['group'],
         ];
     }
 

@@ -4,11 +4,14 @@ require_once ROOT . '/app/php/functions.php';
 require_once ROOT . '/app/controllers/Admin_controller.php';
 require_once ROOT . '/app/models/Admin_model.php';
 require_once ROOT . '/app/core/View.php';
+require_once ROOT . '/app/core/User.php';
 require_once ROOT . '/app/dataClasses/Admin_JsonData.php';
 $adminPage = new Admin_Controller();
 
-if (!check_authorization()) {
-    if (isset($_POST['login']) && isset($_POST['password'])) {
+if (!check_authorization() && $_SESSION['group'] == 'admin') {
+    header('location: /login/');
+    die();
+   /* if (isset($_POST['login']) && isset($_POST['password'])) {
         if (!authorization_attempt ($_POST['login'], $_POST['password'])) {
             $adminPage->logerror();
             die();
@@ -16,7 +19,7 @@ if (!check_authorization()) {
     } else {
         $adminPage->login();
         die();
-    }
+    }*/
 }
 
 

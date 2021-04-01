@@ -46,28 +46,10 @@ function send_mail($name, $phone, $address, $goodsData, $arrOrder) {
 }
 
 function check_authorization() {
-    if (isset($_COOKIE['d688c4ccd7e20183b67f80d8816a2126']) &&
-        $_COOKIE['d688c4ccd7e20183b67f80d8816a2126'] == 'b326b5062b2f0e69046810717534cb09') {
+    if (isset($_COOKIE['auth']) &&
+        $_COOKIE['auth'] == 'true') {
         return true;
     }
     return false;
 }
 
-function authorization_attempt ($login, $password)
-{
-    $users = json_decode(file_get_contents(ROOT . '/app/data/users.json'));
-    foreach ($users as $user) {
-        if ($user->login == md5($login) && password_verify($password, $user->password)) {
-            setcookie('d688c4ccd7e20183b67f80d8816a2126', 'b326b5062b2f0e69046810717534cb09', time() + 600, '/');
-            setcookie('ee11cbb19052e40b07aac0ca060c23ee', $user->group, time() + 600, '/');
-            return true;
-        }
-    }
-    return false;
-}
-
-function logout () {
-    setcookie('d688c4ccd7e20183b67f80d8816a2126', '0', time()-60, '/');
-    setcookie('ee11cbb19052e40b07aac0ca060c23ee', '0', time()-60, '/');
-    header('location: /admin/');
-}

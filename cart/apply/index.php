@@ -4,6 +4,7 @@ require_once ROOT . '/app/php/functions.php';
 require_once ROOT . '/app/controllers/Cart_apply_controller.php';
 require_once ROOT . '/app/models/Cart_apply_model.php';
 require_once ROOT . '/app/core/View.php';
+require_once ROOT . '/app/core/User.php';
 $cartPage = new Cart_Apply_Controller();
 $name = $_POST['name'] ?? '';
 $phone = $_POST['phone'] ?? '';

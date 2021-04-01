@@ -40,9 +40,13 @@ extract($pageData);
         <div class="footer-contacts">
             <p class="footer-contact">Курс доллара:</p>
             <p class="footer-contact"><?= "{$exchange_rates->Cur_Scale} {$exchange_rates->Cur_Abbreviation}: {$exchange_rates->Cur_OfficialRate} бел.руб";?></p>
-            <a href="/admin/">Войти</a>
+            <a href="/login/">Войти</a>
         </div>
     </footer>
 </div>
 </body>
 </html>
+<?= $user_name . " group: " . $user_group;?>
+<pre>
+    <?php var_dump($_SESSION); ?>
+</pre>
