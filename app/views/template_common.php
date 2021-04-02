@@ -26,6 +26,11 @@ extract($pageData);
             <p class="header-cart-quantity"><?= $orderQuantity; ?></p>
             <p class="header-cart-price">$<?= $orderAmount; ?></p>
         </div>
+        <?php if ($auth == 'true') :?>
+            <a href="/login/?action=logout" class="header-link">Выйти</a>
+        <?php else : ?>
+            <a href="/login/" class="header-link">Войти</a>
+        <?php endif; ?>
     </header>
 
 <?php include_once $content_view; ?>
@@ -39,8 +44,12 @@ extract($pageData);
         </div>
         <div class="footer-contacts">
             <p class="footer-contact">Курс доллара:</p>
-            <p class="footer-contact"><?= "{$exchange_rates->Cur_Scale} {$exchange_rates->Cur_Abbreviation}: {$exchange_rates->Cur_OfficialRate} бел.руб";?></p>
-            <a href="/login/">Войти</a>
+            <p class="footer-contact"><?= "{$exchange_rates['Cur_Scale']} {$exchange_rates['Cur_Abbreviation']}: {$exchange_rates['Cur_OfficialRate']} бел.руб";?></p>
+
+            <?php if ($user_group == 'admin' || $user_group == 'moderator') :?>
+                <a href="/admin/" class="footer-link">Войти в админку</a>
+            <?php endif; ?>
+
         </div>
     </footer>
 </div>

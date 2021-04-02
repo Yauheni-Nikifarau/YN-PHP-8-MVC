@@ -14,10 +14,10 @@ class Product_Controller extends Controller
         $template = ROOT . '/app/views/404_view.php';
         if (isset($_GET['friendly_url'])) {
             foreach ($pageData['goods_data'] as $id => $good) {
-                if ($good->friendly_title == $_GET['friendly_url']) {
+                if ($good['friendly_title'] == $_GET['friendly_url']) {
                     $template = ROOT . '/app/views/product_view.php';
-                    $pageData['goods_data'] = [$id => $pageData['goods_data']->$id];
-                    $pageData['title'] = $pageData['goods_data'][$id]->title;
+                    $pageData['goods_data'] = [$id => $pageData['goods_data'][$id]];
+                    $pageData['title'] = $pageData['goods_data'][$id]['title'];
                     break;
                 }
             }

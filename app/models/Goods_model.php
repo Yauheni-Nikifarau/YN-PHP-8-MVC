@@ -18,6 +18,10 @@ class Goods_Model extends Model
 
     private function update_Order () {
         if (isset($_POST['goodId'])) {
+            if (!check_authorization()) {
+                header("location: /login/");
+                die();
+            }
             if (!isset($this->arrOrder[$_POST['goodId']])) {
                 $this->arrOrder[$_POST['goodId']] = 1;
             }
@@ -29,7 +33,7 @@ class Goods_Model extends Model
         $this->pageData['orderQuantity'] = count($this->arrOrder);
         foreach ($this->pageData['goods_data'] as $id => $good) {
             if (isset($this->arrOrder[$id])) {
-                $this->pageData['orderAmount'] += $this->arrOrder[$id] * $good->price;
+                $this->pageData['orderAmount'] += $this->arrOrder[$id] * $good['price'];
             }
         }
     }

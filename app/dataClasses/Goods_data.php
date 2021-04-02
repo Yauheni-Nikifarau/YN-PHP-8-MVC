@@ -8,7 +8,7 @@ class Goods_Data extends ApiJsonData
         $oldData = ($oldData !== false) ? $oldData : (object) [];
         $newData = $this->api->getJsonFromApi();
         foreach ($newData as $id => $data) {
-            $oldData->$id = $data;
+            $oldData[$id] = $data;
         }
         $this->putData($oldData);
     }

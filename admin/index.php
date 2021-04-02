@@ -1,4 +1,5 @@
 <?php
+session_start();
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 require_once ROOT . '/app/php/functions.php';
 require_once ROOT . '/app/controllers/Admin_controller.php';
@@ -11,15 +12,6 @@ $adminPage = new Admin_Controller();
 if (!check_authorization() && $_SESSION['group'] == 'admin') {
     header('location: /login/');
     die();
-   /* if (isset($_POST['login']) && isset($_POST['password'])) {
-        if (!authorization_attempt ($_POST['login'], $_POST['password'])) {
-            $adminPage->logerror();
-            die();
-        }
-    } else {
-        $adminPage->login();
-        die();
-    }*/
 }
 
 

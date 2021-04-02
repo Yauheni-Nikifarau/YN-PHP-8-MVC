@@ -34,10 +34,10 @@ function send_mail($name, $phone, $address, $goodsData, $arrOrder) {
 
     $commonSum = 0;
     foreach ($arrOrder as $id => $quantity) {
-        $good = $goodsData->$id;
-        $sum = $good->price * $quantity;
+        $good = $goodsData[$id];
+        $sum = $good['price'] * $quantity;
         $commonSum += $sum;
-        $message .= str_pad($good->title, 50, '-', STR_PAD_RIGHT) . ". Количество: {$quantity}. Цена: \${$good->price}. Сумма: \${$sum}.<br />";
+        $message .= str_pad($good['title'], 50, '-', STR_PAD_RIGHT) . ". Количество: {$quantity}. Цена: \${$good['price']}. Сумма: \${$sum}.<br />";
     }
     $message .= "Общая сумма: \${$commonSum}.";
 

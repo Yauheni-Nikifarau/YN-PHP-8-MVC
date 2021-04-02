@@ -6,7 +6,7 @@ class Admin_JsonData extends JsonData
 
     public function delete ($id) {
         $goods = $this->takeData();
-        unset($goods->$id);
+        unset($goods[$id]);
         $this->putData($goods);
     }
 
@@ -14,7 +14,7 @@ class Admin_JsonData extends JsonData
         $goods = $this->takeData();
         $this->maxId = $this->get_maxId() + 1;
         $id = $this->maxId;
-        $goods->$id = ['title' => $title,
+        $goods[$id] = ['title' => $title,
             'description' => $description,
             'image' => $image,
             'price' => $price,

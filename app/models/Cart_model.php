@@ -37,11 +37,11 @@ class Cart_Model extends Model
         $this->pageData['orderQuantity'] = count($this->arrOrder);
         foreach ($this->pageData['goods_data'] as $id => $good) {
             if (isset($this->arrOrder[$id])) {
-                $this->pageData['orderAmount'] += $this->arrOrder[$id] * $good->price;
+                $this->pageData['orderAmount'] += $this->arrOrder[$id] * $good['price'];
                 $this->pageData['order'][$id] = [
-                    'title' => $good->title,
-                    'image' => $good->image,
-                    'sum' => $this->arrOrder[$id] * $good->price,
+                    'title' => $good['title'],
+                    'image' => $good['image'],
+                    'sum' => $this->arrOrder[$id] * $good['price'],
                     'quantity' => $this->arrOrder[$id]
                 ];
             }

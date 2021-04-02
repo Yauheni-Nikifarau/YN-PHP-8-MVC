@@ -9,7 +9,8 @@ class JsonData
     public function takeData () {
         if (file_exists($this->file)) {
             $file = file_get_contents($this->file);
-            return json_decode($file);
+            $file = json_decode($file, true);
+            return $file;
         } else {
             return false;
         }

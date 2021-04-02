@@ -15,6 +15,7 @@ class Model
         $name = $_SESSION['name'] ?? 'Guest';
         $group = $_SESSION['group'] ?? 'Guest';
         $this->user = new User($name, $group);
+        $auth = $_COOKIE['auth'] ?? '';
         $this->pageData = [
           "title" => '',
           "orderQuantity" => 0,
@@ -23,6 +24,7 @@ class Model
           "goods_data" => $this->get_goods_data(),
           "user_name" => $this->user->get()['name'],
           "user_group" => $this->user->get()['group'],
+            "auth" => $auth
         ];
     }
 
