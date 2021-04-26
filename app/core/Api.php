@@ -18,7 +18,7 @@ class Api
         curl_setopt_array($curlQuery, $curlOptions);
         $curlResult = curl_exec($curlQuery);
         curl_close($curlQuery);
-        $curlResult = json_decode($curlResult);
+        $curlResult = json_decode($curlResult, true);
         return $curlResult;
     }
 }

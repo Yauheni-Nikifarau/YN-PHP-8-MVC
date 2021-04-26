@@ -36,6 +36,12 @@ Class Admin_Controller extends Controller
     {
         $pageData = $this->model->get_pageData();
         $pageData['id'] = $id;
+        foreach ($pageData['goods_data'] as $k => $good) {
+            if ($good['id'] == $id) {
+                $pageData['index'] = $k;
+                break;
+            }
+        }
         $this->view->generate(ROOT . '/app/views/admin_change_form_view.php', $pageData);
     }
 }

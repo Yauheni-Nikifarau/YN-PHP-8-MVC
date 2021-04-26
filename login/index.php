@@ -8,6 +8,7 @@ require_once ROOT . '/app/core/View.php';
 require_once ROOT . '/app/core/Authorization.php';
 require_once ROOT . '/app/core/User.php';
 require_once ROOT . '/app/dataClasses/Users_JsonData.php';
+require_once ROOT . '/app/dataClasses/GoodsDb.php';
 $loginPage = new Login_Controller();
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     Authorization::logout();

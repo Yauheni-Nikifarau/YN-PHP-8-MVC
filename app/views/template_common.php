@@ -55,7 +55,4 @@ extract($pageData);
 </div>
 </body>
 </html>
-<?= $user_name . " group: " . $user_group;?>
-<pre>
-    <?php var_dump($_SESSION); ?>
-</pre>
+

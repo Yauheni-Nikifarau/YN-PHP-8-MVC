@@ -53,3 +53,9 @@ function check_authorization() {
     return false;
 }
 
+function prent ($var) {
+    echo '<pre>';
+    print_r($var);
+    echo '</pre>';
+}
+

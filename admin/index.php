@@ -7,9 +7,10 @@ require_once ROOT . '/app/models/Admin_model.php';
 require_once ROOT . '/app/core/View.php';
 require_once ROOT . '/app/core/User.php';
 require_once ROOT . '/app/dataClasses/Admin_JsonData.php';
+require_once ROOT . '/app/dataClasses/GoodsDb.php';
 $adminPage = new Admin_Controller();
 
-if (!check_authorization() && $_SESSION['group'] == 'admin') {
+if ( ! check_authorization() && $_SESSION['group'] == 'admin') {
     header('location: /login/');
     die();
 }
@@ -17,11 +18,10 @@ if (!check_authorization() && $_SESSION['group'] == 'admin') {
 
 
 if (isset($_GET['action'])) {
-    $adminDatabase = new Admin_JsonData(ROOT . '/app/data/goods.json');
     switch ($_GET['action']) {
         case 'delete':
             if (isset($_GET['delete_id'])) {
-                $adminDatabase->delete($_GET['delete_id']);
+                GoodsDb::adminDeleteGood($_GET['delete_id']);
                 header('location: /admin/');
             }
             break;
@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
                 isset($_POST['description']) &&
                 isset($_POST['image']) &&
                 isset($_POST['price'])) {
-                $adminDatabase->add($_POST['title'], $_POST['description'], $_POST['image'], $_POST['price']);
+                GoodsDb::adminAddGood($_POST['title'], $_POST['description'], $_POST['image'], $_POST['price']);
                 header('location: /admin/');
             } else {
                 $adminPage->add_form();
@@ -43,7 +43,7 @@ if (isset($_GET['action'])) {
                 isset($_POST['description']) &&
                 isset($_POST['image']) &&
                 isset($_POST['price'])) {
-                $adminDatabase->change($_GET['change_id'], $_POST['title'], $_POST['description'], $_POST['image'], $_POST['price']);
+                GoodsDb::adminChangeGood($_GET['change_id'], $_POST['title'], $_POST['description'], $_POST['image'], $_POST['price']);
                 header('location: /admin/');
             } elseif (isset($_GET['change_id'])) {
                 $adminPage->change_form($_GET['change_id']);

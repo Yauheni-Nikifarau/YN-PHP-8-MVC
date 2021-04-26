@@ -5,13 +5,13 @@ class Model
 {
     protected $pageData;
     private $exc_api;
-    private $goods_api;
+    //private $goods_api;
 
 
     public function __construct()
     {
         $this->exc_api = new Exc_Rates_Data(ROOT . '/app/data/rates.json', 'https://www.nbrb.by/api/exrates/rates/145');
-        $this->goods_api = new Goods_Data(ROOT . '/app/data/goods.json', 'https://fakestoreapi.herokuapp.com/products/category/electronics');
+        //$this->goods_api = new Goods_Data(ROOT . '/app/data/goods.json', 'https://fakestoreapi.herokuapp.com/products/category/electronics');
         $name = $_SESSION['name'] ?? 'Guest';
         $group = $_SESSION['group'] ?? 'Guest';
         $this->user = new User($name, $group);
@@ -40,9 +40,11 @@ class Model
     }
 
     private function get_goods_data () {
-        if (!file_exists(ROOT . '/app/data/goods.json') || (time() - filemtime(ROOT . '/app/data/goods.json') > 3600)) {
-            $this->goods_api->updateData();
+        $time = (int) file_get_contents(ROOT . '/app/data/time.txt');
+        if (time() - $time > 600) {
+            GoodsDb::updateGoodsData();
+            file_put_contents(ROOT . '/app/data/time.txt', time());
         }
-        return $this->goods_api->takeData();
+        return GoodsDb::getGoodsData();
     }
 }

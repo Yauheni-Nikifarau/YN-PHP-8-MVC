@@ -6,6 +6,7 @@ require_once ROOT . '/app/models/Cart_model.php';
 require_once ROOT . '/app/core/View.php';
 require_once ROOT . '/app/core/User.php';
 require_once ROOT . '/app/php/functions.php';
+require_once ROOT . '/app/dataClasses/GoodsDb.php';
 
 
 if (!check_authorization()) {
