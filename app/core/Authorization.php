@@ -1,5 +1,4 @@
 <?php
-require_once ROOT . '/app/dataClasses/Users_JsonData.php';
 final class Authorization
 {
     public static function registration ($data)

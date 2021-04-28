@@ -2,13 +2,7 @@
 session_start();
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 require_once ROOT . '/app/php/functions.php';
-require_once ROOT . '/app/controllers/Login_controller.php';
-require_once ROOT . '/app/core/Model.php';
-require_once ROOT . '/app/core/View.php';
-require_once ROOT . '/app/core/Authorization.php';
-require_once ROOT . '/app/core/User.php';
-require_once ROOT . '/app/dataClasses/Users_JsonData.php';
-require_once ROOT . '/app/dataClasses/GoodsDb.php';
+require_once ROOT . '/app/php/autoloader.php';
 $loginPage = new Login_Controller();
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     Authorization::logout();

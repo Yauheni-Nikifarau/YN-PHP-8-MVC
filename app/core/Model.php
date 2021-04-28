@@ -1,6 +1,4 @@
 <?php
-require_once ROOT . '/app/dataClasses/Exc_rates_data.php';
-require_once ROOT . '/app/dataClasses/Goods_data.php';
 class Model
 {
     protected $pageData;

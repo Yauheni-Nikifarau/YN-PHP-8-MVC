@@ -1,16 +1,1 @@
-1619467514
-create table goods
-(
-	id int not null,
-	title varchar(500) null,
-	description text null,
-	price int null,
-	image varchar(255) null,
-	friendly_title varchar(500) null,
-	constraint goods_id_uindex
-		unique (id)
-);
-
-alter table goods
-	add primary key (id);
-
+1619612187
